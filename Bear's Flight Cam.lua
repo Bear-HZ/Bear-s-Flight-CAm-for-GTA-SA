@@ -3,7 +3,6 @@ script_version("1.0.0")
 require 'moonloader'
 
 function main()
-	if 
 	local isCamPlacementNeeded, shouldCamBeBehindPlayer = false, true
 	
 	local function isSwitchKeyPressed()

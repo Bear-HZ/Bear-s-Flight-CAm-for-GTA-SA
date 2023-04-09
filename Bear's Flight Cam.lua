@@ -1,4 +1,4 @@
-script_version("1.0.0")
+script_version("1.0.1")
 
 require 'moonloader'
 
@@ -14,18 +14,16 @@ function main()
 		local x, y
 		
 		while true do
-			if isCharInFlyingVehicle(PLAYER_PED) then
-				while isCharInFlyingVehicle(PLAYER_PED) do
-					x, y = getPcMouseMovement()
+			while isCharInFlyingVehicle(PLAYER_PED) do
+				x, y = getPcMouseMovement()
+				
+				if x ~= 0 or y ~= 0 then
+					isCamPlacementNeeded = false
 					
-					if x ~= 0 or y ~= 0 then
-						isCamPlacementNeeded = false
-						
-						while isCharInFlyingVehicle(PLAYER_PED) and not isCamPlacementNeeded do wait(0) end
-					end
-					
-					wait(0)
+					while isCharInFlyingVehicle(PLAYER_PED) and not isCamPlacementNeeded do wait(0) end
 				end
+				
+				wait(0)
 			end
 			
 			wait(50)
@@ -54,8 +52,11 @@ function main()
 		end
 	end)
 	
+	-- Cam placement
 	while true do
-		while isCharInFlyingVehicle(PLAYER_PED) do
+		while isCharInFlyingVehicle(PLAYER_PED)
+		and isCharSittingInAnyCar(PLAYER_PED) -- Added in 1.0.1; ensures that the player character isn't in the process of stepping out of the vehicle
+		do
 			if isCamPlacementNeeded then
 				if shouldCamBeBehindPlayer then
 					setCameraBehindPlayer()

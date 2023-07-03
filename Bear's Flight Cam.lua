@@ -1,4 +1,4 @@
-script_version("1.0.1")
+script_version("1.0.2")
 
 require 'moonloader'
 
@@ -6,7 +6,7 @@ function main()
 	local isCamPlacementNeeded, shouldCamBeBehindPlayer = false, true
 	
 	local function isSwitchKeyPressed()
-		return (isKeyDown(32) and not (sampIsChatInputActive ~= nil and sampIsChatInputActive()))
+		return (isKeyDown(32) and not (sampIsChatInputActive ~= nil and sampIsChatInputActive()) and not (sampIsDialogActive ~= nil and sampIsDialogActive()))
 	end
 	
 	-- Mouse control

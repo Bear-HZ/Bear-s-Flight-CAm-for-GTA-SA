@@ -1,4 +1,4 @@
-script_version("1.0.2")
+script_version("1.0.3")
 
 require 'moonloader'
 
@@ -35,14 +35,14 @@ function main()
 		while true do
 			while isCharInFlyingVehicle(PLAYER_PED) do
 				if isSwitchKeyPressed() then
-					while isCharInFlyingVehicle(PLAYER_PED) and isSwitchKeyPressed() do wait(0) end
-					
 					if isCamPlacementNeeded then
 						shouldCamBeBehindPlayer = not shouldCamBeBehindPlayer
 					else
 						shouldCamBeBehindPlayer = true
 						isCamPlacementNeeded = true
 					end
+					
+					while isCharInFlyingVehicle(PLAYER_PED) and isSwitchKeyPressed() do wait(0) end
 				end
 				
 				wait(0)
